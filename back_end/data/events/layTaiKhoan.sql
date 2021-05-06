@@ -1,0 +1,10 @@
+SELECT [MaUser]
+        ,[SoTienTK]
+        ,[DiemThuong]
+        ,[TenUser]
+        ,[Email]
+        ,[TaiKhoan]
+        ,[MatKhau]
+        ,[MaQuyen]
+FROM [dbo].[USERS]
+WHERE [TaiKhoan]=@TaiKhoan
