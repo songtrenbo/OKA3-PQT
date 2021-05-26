@@ -250,6 +250,38 @@ const dsHang = async()=>{
   }
 }
 
+
+const suaPhieuQuaTang = async (eventData)=>{
+  try {
+      let pool=await sql.connect(config.sql);
+      const sqlQueries = await utils.loadSqlQueries('events');
+      const updates = await pool.request()
+                      .input('MaCTPhieu',sql.VarChar(25),eventData.MaCTPhieu)
+                      .input('SoLuong',sql.Int,eventData.SoLuong)
+                      .input('NgayNhan',sql.Date,eventData.NgayNhan)
+                      .input('NgayHetHan',sql.Date,eventData.NgayHetHan)
+                      .input('TrangThai',sql.Bit,eventData.TrangThai)
+                      .input('GiamGia',sql.Float,eventData.GiamGia)
+                      .input('DiemThuongDoi',sql.Int,eventData.DiemThuongDoi)
+                      .query(sqlQueries.suaPhieuQuaTang);
+      return updates.recordset;
+  } catch (error) {
+      return error.message;        
+  }
+}
+
+
+
+const dsPhieuQuaTang = async()=>{
+  try {
+      let pool = await sql.connect(config.sql);
+      const sqlQueries = await utils.loadSqlQueries('events');
+      const list = await pool.request().query(sqlQueries.dsPhieuQuaTang);
+      return list.recordset;
+  } catch (error) {
+      return error.message;
+  }
+}
 module.exports = {
   loginUser,
   thongTinUser,
@@ -266,5 +298,7 @@ module.exports = {
   taoCTHoaDon,
   suaHang,
   taoPhieuQuaTang,
-  dsHang
+  dsHang,
+  suaPhieuQuaTang,
+  dsPhieuQuaTang
 };

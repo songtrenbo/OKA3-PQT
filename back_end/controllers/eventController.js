@@ -188,6 +188,27 @@ const dsHH = async (req,res,next) =>{
       res.status(400).send(error.message);
   }
 }
+
+const suaPhieuQT = async (req,res)=>{
+  try {
+      const data = req.body;
+      const updated = await eventData.suaPhieuQuaTang(data);
+      res.send(updated);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
+
+const dsPhieuQT = async (req,res,next) =>{
+  try {
+      const events = await eventData.dsPhieuQuaTang();
+      res.send(events);
+      
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
+
 module.exports = {
   // getUser,
   layTKMK,
@@ -204,5 +225,7 @@ module.exports = {
   taoCTHD,
   suaHH,
   taoPhieuQT,
-  dsHH
+  dsHH,
+  suaPhieuQT,
+  dsPhieuQT
 };
