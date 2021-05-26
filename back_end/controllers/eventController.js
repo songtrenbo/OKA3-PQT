@@ -3,40 +3,40 @@
 const e = require("express");
 const eventData = require("../data/events");
 
-const getUser = async (req, res) => {
-  try {
-    const dataTen = req.body;
-    const datamk = req.body;
-    const data1 = req.body;
-    const oneTen = await eventData.getTenUser(dataTen);
-    const oneMk = await eventData.getMK(datamk);
-    const oneUser = await eventData.loginUser(data1);
+// const getUser = async (req, res) => {
+//   try {
+//     const dataTen = req.body;
+//     const datamk = req.body;
+//     const data1 = req.body;
+//     const oneTen = await eventData.getTenUser(dataTen);
+//     const oneMk = await eventData.getMK(datamk);
+//     const oneUser = await eventData.loginUser(data1);
 
-    if (oneTen != "") {
-      if (oneMk != "") {
-        if (oneUser != "") {
-          res.status(200).send({
-            message: "Successful login!",
-          });
-        } else {
-          res.status(200).send({
-            message: "Password incorrect!",
-          });
-        }
-      } else {
-        res.status(200).send({
-          message: "Password incorrect!",
-        });
-      }
-    } else {
-      res.status(200).send({
-        message: "User not found!",
-      });
-    }
-  } catch (error) {
-    res.status(400).end(error.message);
-  }
-};
+//     if (oneTen != "") {
+//       if (oneMk != "") {
+//         if (oneUser != "") {
+//           res.status(200).send({
+//             message: "Successful login!",
+//           });
+//         } else {
+//           res.status(200).send({
+//             message: "Password incorrect!",
+//           });
+//         }
+//       } else {
+//         res.status(200).send({
+//           message: "Password incorrect!",
+//         });
+//       }
+//     } else {
+//       res.status(200).send({
+//         message: "User not found!",
+//       });
+//     }
+//   } catch (error) {
+//     res.status(400).end(error.message);
+//   }
+// };
 
 const layTKMK = async (req, res) => {
   try {
@@ -115,10 +115,81 @@ const thongTinUser = async (req,res)=>{
       res.status(400).send(error.message);
   }
 }
+const dsUsers = async (req,res)=>{
+  try {
+      const eventId = req.params.MaQuyen;
+      const oneEvent = await eventData.dsUsers(eventId);
+      res.send(oneEvent);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
+const xemPhieuQT = async (req,res)=>{
+  try {
+      const eventId = req.params.MaUser;
+      const oneEvent = await eventData.xemPhieuQT(eventId);
+      res.send(oneEvent);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
+const taoHD = async (req, res) => {
+  try {
+    const data = req.body;
+    const created = await eventData.taoHoaDon(data);
+    res.send(created);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+const taoCTHD = async (req, res) => {
+  try {
+    const datas = req.body;
+    const a = datas.length;
+    var e=[];
+    for(var i=0;i<=a;i++){
+      const created = await eventData.taoCTHoaDon(datas[i]);
+      e.push(created)
+    }    
+    res.send(e);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
 
 
+const suaHH = async (req,res)=>{
+  try {
+      const data = req.body;
+      const updated = await eventData.suaHang(data);
+      res.send(updated);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
+
+
+const taoPhieuQT = async (req, res) => {
+  try {
+    const data = req.body;
+    const created = await eventData.taoPhieuQuaTang(data);
+    res.send(created);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
+
+const dsHH = async (req,res,next) =>{
+  try {
+      const events = await eventData.dsHang();
+      res.send(events);
+      
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
 module.exports = {
-  getUser,
+  // getUser,
   layTKMK,
   layMatKhau,
   layTaiKhoan,
@@ -126,5 +197,12 @@ module.exports = {
   themHang,
   xoaTK,
   suaTK,
-  thongTinUser
+  thongTinUser,
+  dsUsers,
+  xemPhieuQT,
+  taoHD,
+  taoCTHD,
+  suaHH,
+  taoPhieuQT,
+  dsHH
 };

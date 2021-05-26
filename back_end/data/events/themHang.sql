@@ -8,6 +8,7 @@ INSERT INTO [dbo].[HANG]
         ,[MaSize]
         ,[MoTa]
         ,[Hinh]
+        ,[SoLuong]
     )
 VALUES(
     @TenHH,
@@ -17,7 +18,8 @@ VALUES(
     @MaDT,
     @MaSize,
     @MoTa,
-    @Hinh
+    @Hinh,
+    @SoLuong
 )
 
 SELECT SCOPE_IDENTITY() AS MaHH
