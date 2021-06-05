@@ -118,7 +118,7 @@ const xoaTK = async (eventId)=>{
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('events');
         const xoa = await pool.request()
-                        .input('MaUser',sql.VarChar(9),eventId)
+                        .input('MaUser',sql.Int,eventId)
                         .query(sqlQueries.xoaTaiKhoan);
         return xoa.recordset;
     } catch (error) {
@@ -130,7 +130,7 @@ const suaTK = async (eventId, eventData)=>{
         let pool=await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('events');
         const update = await pool.request()
-                        .input('MaUser',sql.VarChar(9),eventId)
+                        .input('MaUser',sql.Int,eventId)
                         .input('TenUser',sql.NVarChar(100),eventData.TenUser)
                         .input('Email',sql.NVarChar(200),eventData.Email)
                         .input('TaiKhoan',sql.VarChar(100),eventData.TaiKhoan)
@@ -160,7 +160,7 @@ const xemPhieuQT = async (eventId)=>{
       let pool = await sql.connect(config.sql);
       const sqlQueries = await utils.loadSqlQueries('events');
       const layds = await pool.request()
-                      .input('MaUser',sql.VarChar(9),eventId)
+                      .input('MaUser',sql.Int,eventId)
                       .query(sqlQueries.xemPhieuQuaTang);
       return layds.recordset;
   } catch (error) {
@@ -174,7 +174,7 @@ const taoHoaDon = async (eventData) => {
     const oneEvent = await pool
       .request()
       .input("NgayMua", sql.Date, eventData.NgayMua)
-      .input("MaUser", sql.VarChar(9), eventData.MaUser)
+      .input("MaUser", sql.Int, eventData.MaUser)
       .query(sqlQueries.taoHD);
     return oneEvent.recordset;
   } catch (error) {
@@ -188,8 +188,8 @@ const taoCTHoaDon = async (eventData) => {
     const oneEvent = await pool
       .request()
       .input("SoLuong", sql.Int, eventData.SoLuong)
-      .input("MaHH", sql.VarChar(11), eventData.MaHH)
-      .input("MaHD", sql.VarChar(9), eventData.MaHD)
+      .input("MaHH", sql.Int, eventData.MaHH)
+      .input("MaHD", sql.Int, eventData.MaHD)
       .query(sqlQueries.taoCTHD);
     return oneEvent.recordset;
   } catch (error) {
@@ -202,7 +202,7 @@ const suaHang = async (eventData)=>{
       let pool=await sql.connect(config.sql);
       const sqlQueries = await utils.loadSqlQueries('events');
       const updates = await pool.request()
-                      .input('MaHH',sql.VarChar(11),eventData.MaHH)
+                      .input('MaHH',sql.Int,eventData.MaHH)
                       .input('TenHH',sql.NVarChar(50),eventData.TenHH)
                       .input('SoLuong',sql.Int,eventData.SoLuong)
                       .input('Gia',sql.Float,eventData.Gia)
@@ -224,7 +224,7 @@ const taoPhieuQuaTang = async (eventData) => {
     const sqlQueries = await utils.loadSqlQueries("events");
     const oneEvent = await pool
       .request()
-      .input("MaCTPhieu", sql.VarChar(25), eventData.MaCTPhieu)
+      .input("MaCTPhieu", sql.Int, eventData.MaCTPhieu)
       .input("SoLuong", sql.Int, eventData.SoLuong)
       .input("NgayNhan", sql.Date, eventData.NgayNhan)
       .input("NgayHetHan", sql.Date, eventData.NgayHetHan)
@@ -256,7 +256,7 @@ const suaPhieuQuaTang = async (eventData)=>{
       let pool=await sql.connect(config.sql);
       const sqlQueries = await utils.loadSqlQueries('events');
       const updates = await pool.request()
-                      .input('MaCTPhieu',sql.VarChar(25),eventData.MaCTPhieu)
+                      .input('MaCTPhieu',sql.Int,eventData.MaCTPhieu)
                       .input('SoLuong',sql.Int,eventData.SoLuong)
                       .input('NgayNhan',sql.Date,eventData.NgayNhan)
                       .input('NgayHetHan',sql.Date,eventData.NgayHetHan)
@@ -282,6 +282,33 @@ const dsPhieuQuaTang = async()=>{
       return error.message;
   }
 }
+
+
+const xemCTHoaDon = async (eventId)=>{
+  try {
+      let pool = await sql.connect(config.sql);
+      const sqlQueries = await utils.loadSqlQueries('events');
+      const layds = await pool.request()
+                      .input('MaHD',sql.Int,eventId)
+                      .query(sqlQueries.xemCTHoaDon);
+      return layds.recordset;
+  } catch (error) {
+      return error.message;            
+  }
+}
+
+const dsHoaDon = async (eventId)=>{
+  try {
+      let pool = await sql.connect(config.sql);
+      const sqlQueries = await utils.loadSqlQueries('events');
+      const layds = await pool.request()
+                      .input('MaUser',sql.Int,eventId)
+                      .query(sqlQueries.dsHoaDon);
+      return layds.recordset;
+  } catch (error) {
+      return error.message;            
+  }
+}
 module.exports = {
   loginUser,
   thongTinUser,
@@ -300,5 +327,7 @@ module.exports = {
   taoPhieuQuaTang,
   dsHang,
   suaPhieuQuaTang,
-  dsPhieuQuaTang
+  dsPhieuQuaTang,
+  xemCTHoaDon,
+  dsHoaDon
 };
