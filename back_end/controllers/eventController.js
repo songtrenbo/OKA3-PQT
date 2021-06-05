@@ -208,7 +208,25 @@ const dsPhieuQT = async (req,res,next) =>{
       res.status(400).send(error.message);
   }
 }
+const xemCTHD = async (req,res)=>{
+  try {
+      const eventId = req.params.MaHD;
+      const oneEvent = await eventData.xemCTHoaDon(eventId);
+      res.send(oneEvent);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
 
+const dsHD = async (req,res)=>{
+  try {
+      const eventId = req.params.MaUser;
+      const oneEvent = await eventData.dsHoaDon(eventId);
+      res.send(oneEvent);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
 module.exports = {
   // getUser,
   layTKMK,
@@ -227,5 +245,7 @@ module.exports = {
   taoPhieuQT,
   dsHH,
   suaPhieuQT,
-  dsPhieuQT
+  dsPhieuQT,
+  xemCTHD,
+  dsHD
 };
