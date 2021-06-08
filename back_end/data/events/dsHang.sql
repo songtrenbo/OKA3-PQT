@@ -1,4 +1,5 @@
-SELECT  [TenHH],
+SELECT  [MaHH],
+        [TenHH],
         [SoLuong],
         [Gia],
         [TrangThai],

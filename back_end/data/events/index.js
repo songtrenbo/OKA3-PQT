@@ -309,6 +309,22 @@ const dsHoaDon = async (eventId)=>{
       return error.message;            
   }
 }
+
+const muaPhieuQT = async (eventData) => {
+  try {
+    let pool = await sql.connect(config.sql);
+    const sqlQueries = await utils.loadSqlQueries("events");
+    const muaPhieu = await pool
+      .request()
+      .input("MaUser", sql.Int, eventData.MaUser)
+      .input("MaCTPhieu", sql.Int, eventData.MaCTPhieu)
+      .input("SoLuongPhieu", sql.Int, eventData.SoLuongPhieu)
+      .query(sqlQueries.muaPhieuQT);
+    return muaPhieu.recordset;
+  } catch (error) {
+    return error.message;
+  }
+};
 module.exports = {
   loginUser,
   thongTinUser,
@@ -329,5 +345,6 @@ module.exports = {
   suaPhieuQuaTang,
   dsPhieuQuaTang,
   xemCTHoaDon,
-  dsHoaDon
+  dsHoaDon,
+  muaPhieuQT
 };
