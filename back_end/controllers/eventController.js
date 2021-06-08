@@ -227,6 +227,16 @@ const dsHD = async (req,res)=>{
       res.status(400).send(error.message);
   }
 }
+
+const muaPQT = async (req, res) => {
+  try {
+    const data = req.body;
+    const created = await eventData.muaPhieuQT(data);
+    res.send(created);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+}
 module.exports = {
   // getUser,
   layTKMK,
@@ -247,5 +257,6 @@ module.exports = {
   suaPhieuQT,
   dsPhieuQT,
   xemCTHD,
-  dsHD
+  dsHD,
+  muaPQT
 };
