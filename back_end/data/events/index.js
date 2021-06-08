@@ -190,6 +190,7 @@ const taoCTHoaDon = async (eventData) => {
       .input("SoLuong", sql.Int, eventData.SoLuong)
       .input("MaHH", sql.Int, eventData.MaHH)
       .input("MaHD", sql.Int, eventData.MaHD)
+      .input("MaUser", sql.Int, eventData.MaUser)
       .query(sqlQueries.taoCTHD);
     return oneEvent.recordset;
   } catch (error) {
