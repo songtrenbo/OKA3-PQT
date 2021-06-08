@@ -23,8 +23,10 @@ ON h.MaHH=@MaHH
 WHERE [MaUser]=@MaUser   
 
 UPDATE [dbo].[USERS]
-SET [DiemThuong]=DiemThuong-h.Gia*@SoLuong
+SET [DiemThuong]=DiemThuong+dt.SoDT*@SoLuong
 FROM [dbo].[USERS] u
 JOIN [dbo].[HANG] h
 ON h.MaHH=@MaHH
+JOIN [dbo].[DIEMTHUONG] dt
+ON dt.MaDT=h.MaDT
 WHERE [MaUser]=@MaUser
