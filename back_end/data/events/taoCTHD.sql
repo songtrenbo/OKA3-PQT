@@ -15,6 +15,8 @@ UPDATE [dbo].[HANG]
 SET     [SoLuong]=SoLuong-@SoLuong
 WHERE [MaHH]=@MaHH   
 
+UPDATE [dbo].[USERS]
+SET [SoTienTK]=SoTienTK-h.[Gia]*@SoLuong
 
 -- UPDATE [dbo].[USERS] u
 -- INNER JOIN [dbo].[HOADON] hd AND [dbo].[HANG] h
