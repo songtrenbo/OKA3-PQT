@@ -4,7 +4,7 @@ const express = require('express');
 const eventController = require('../controllers/eventController');
 const router = express.Router();
 
-const{themKH,themHang,layTaiKhoan,layMatKhau,layTKMK,xoaTK,suaTK,thongTinUser,dsUsers,xemPhieuQT,taoHD,taoCTHD,suaHH,taoPhieuQT,dsHH,suaPhieuQT,dsPhieuQT,xemCTHD,dsHD} = eventController;
+const{themKH,themHang,layTaiKhoan,layMatKhau,layTKMK,xoaTK,suaTK,thongTinUser,dsUsers,xemPhieuQT,taoHD,taoCTHD,suaHH,taoPhieuQT,dsHH,suaPhieuQT,dsPhieuQT,xemCTHD,dsHD,muaPQT} = eventController;
 
 // router.post('/logins',getUser);
 
@@ -27,6 +27,7 @@ router.put('/updatePhieuQT', suaPhieuQT);
 router.get('/listPhieuQT',dsPhieuQT);
 router.get('/viewCTHD/:MaHD',xemCTHD);
 router.get('/listHoaDon/:MaUser',dsHD);
+router.post('/muaPhieuQT',muaPQT);
 
 
 module.exports ={
