@@ -237,6 +237,16 @@ const muaPQT = async (req, res) => {
     res.status(400).send(error.message);
   }
 }
+
+const xemCTH = async (req,res)=>{
+  try {
+      const eventId = req.params.MaHH;
+      const oneEvent = await eventData.xemCTHang(eventId);
+      res.send(oneEvent);
+  } catch (error) {
+      res.status(400).send(error.message);
+  }
+}
 module.exports = {
   // getUser,
   layTKMK,
@@ -258,5 +268,6 @@ module.exports = {
   dsPhieuQT,
   xemCTHD,
   dsHD,
-  muaPQT
+  muaPQT,
+  xemCTH
 };
