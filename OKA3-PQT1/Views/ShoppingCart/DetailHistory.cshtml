@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.CT_HOADON>
+
+@{
+    ViewBag.Title = "DetailHistory";
+    Layout = "~/Views/Shared/_LayoutPageProfile.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    <a href="@Url.Action("ViewPaymentHistory", "ShoppingCart", new {mauser=Session["MaUser"]})"><i class="bi bi-arrow-left"></i></a>
+</div>
+<h2>Detail History</h2>
+
+<table class="table">
+    <tr>
+        <th class="align-middle">
+            PRODUCT
+        </th>
+        <th class="align-middle text-center">
+            QUANTITY
+        </th>
+        <th class="align-middle text-center">
+            PRICE
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="align-middle">
+                <img src="@Url.Content(item.HANG.Hinh)" width="15%" />
+                @Html.DisplayFor(modelItem => item.HANG.TenHH)
+            </td>
+            <td class="align-middle text-center">
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td class="align-middle text-center">
+                @Html.DisplayFor(modelItem => item.HANG.Gia)$
+            </td>
+        </tr>
+    }
+
+</table>

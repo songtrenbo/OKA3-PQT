@@ -1,0 +1,88 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.CT_PHIEUQUATANG>
+
+@{
+    ViewBag.Title = "CouponsManagement";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+<h2>Coupons Management</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null,new { @class="btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaCTPhieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayNhan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayHetHan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GiamGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiemThuongDoi)
+        </th>
+        <th>
+            Function
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaCTPhieu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SoLuong)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayNhan.Day)/@Html.DisplayFor(modelItem => item.NgayNhan.Month)/@Html.DisplayFor(modelItem => item.NgayNhan.Year)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NgayHetHan.Day)/@Html.DisplayFor(modelItem => item.NgayHetHan.Month)/@Html.DisplayFor(modelItem => item.NgayHetHan.Year)
+    </td>
+
+    @if (item.TrangThai == true)
+    {
+        <td>
+            Stocking
+        </td>
+    }
+    else
+    {
+        <td>
+            Out of stock
+        </td>
+    }
+    <td>
+        @Html.DisplayFor(modelItem => item.GiamGia)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DiemThuongDoi)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { mactp = item.MaCTPhieu }) |
+        @Html.ActionLink("Change status", "ChangeStatusCoupon", new { mactphieu = item.MaCTPhieu })
+    </td>
+</tr>
+    }
+
+</table>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.PHIEUQUATANG>
+
+@{
+    ViewBag.Title = "ViewCoupon";
+    Layout = "~/Views/Shared/_LayoutPageProfile.cshtml";
+}
+
+
+<div>
+    <a href="@Url.Action("Profile", "LoginUser", new {mauser=Session["MaUser"]})"><i class="bi bi-arrow-left"></i></a>
+</div>
+@{
+    var count = 0;
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-6">
+                    <img src="~/Images/discount-coupon1.jpg" style="width:100%" />
+                    <h3>Coupon @item.CT_PHIEUQUATANG.GiamGia</h3>
+                    <h6>Discount @item.CT_PHIEUQUATANG.GiamGia$</h6>
+                    <h6>Quantity: @item.SoLuongPhieu</h6>
+                </div>
+                count++;
+            }
+        </div>
+    </div>
+    if (count == 0)
+    {
+        <h2>You don't have Coupons</h2>
+    }
+}
+
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.HOADON>
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+@using (Html.BeginForm("Report", "Admin", FormMethod.Get))
+{
+    <div class="container">
+        <div class="row">
+            <p class="col-lg-2">Pick day: </p>
+            <input type="date" name="searching" class="form-control col-lg-7" />
+            <input type="submit" value="Confirm" class="btn btn-danger col-lg-2" style="margin-left:10px;" />
+        </div>
+    </div>
+}
+<h2>Report @ViewBag.ngay.Day/@ViewBag.ngay.Month/@ViewBag.ngay.Year</h2>
+
+<table class="table">
+    <tr>
+        <td>
+            Image
+        </td>
+        <td>
+            Product name
+        </td>
+        <td>
+            Quantity
+        </td>
+        <td>
+            Total price
+        </td>
+    </tr>
+
+    @foreach (var item in ViewBag.listHang)
+    {
+        if (item.SoLuong > 0)
+        {
+            var totalprice = item.Gia * item.SoLuong;
+            <tr>
+                <td>
+                    <img src="@Url.Content(item.Hinh)" alt="Alternate Text" width="100" height="100" />
+                </td>
+                <td>
+                    @item.TenHH
+                </td>
+                <td>
+                    @item.SoLuong
+                </td>
+                <td>                    
+                    @totalprice$                    
+                </td>
+            </tr>
+        }
+    }
+<tr>
+    <td>
+        Total
+    </td>
+    <td>
+    </td>
+    <td>
+        @ViewBag.totalsoluong
+    </td>
+    <td>
+        @ViewBag.totalgia$
+    </td>
+</tr>
+</table>

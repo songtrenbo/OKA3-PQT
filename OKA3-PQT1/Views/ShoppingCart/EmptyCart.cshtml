@@ -1,0 +1,19 @@
+﻿
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<a href="@Url.Action("Index","Product")">Continue Shopping</a>
+<div class="cart-row">
+    <span class="cart-item cart-header cart-column">ITEM</span>
+    <span class="cart-price cart-header cart-column">PRICE</span>
+    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+    <span class="cart-quantity cart-header cart-column">TOTAL</span>
+</div>
+<div class="cart-items">
+    <p>There are no products in the cart</p>
+</div>
+<div style="height:307px; width:100%; background-color:white"></div>

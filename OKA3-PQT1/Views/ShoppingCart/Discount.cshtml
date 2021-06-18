@@ -1,0 +1,25 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.PHIEUQUATANG>
+
+@{
+    ViewBag.Title = "Discount";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<h1>Choose your coupon</h1>
+<p style="color:red">You can only choose one to use per cart</p>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4" style="width:60%">
+                <a href="@Url.Action("PurchaseWithDiscount","ShoppingCart", new { total = ViewBag.total, maphieu=item.MaCTPhieu})">
+                    <img src="~/Images/discount-coupon1.jpg" />
+                </a>
+                <h1>Coupon @item.CT_PHIEUQUATANG.GiamGia</h1>
+                <h2>Discount @item.CT_PHIEUQUATANG.GiamGia$</h2>
+                <h2>Quantity: @item.SoLuongPhieu</h2>
+            </div>
+        }
+    </div>
+</div>
+<a href="@Url.Action("Purchase", "ShoppingCart", new { total = ViewBag.total, mauser=Session["MaUser"] })" style="width:30%" class="btn btn-primary btn-purchase">PURCHASE without discount</a>
+@Html.Raw(TempData["msgError"])

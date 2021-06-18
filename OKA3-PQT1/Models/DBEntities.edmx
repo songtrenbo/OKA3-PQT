@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BanHangDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CT_HOADON">
+          <Key>
+            <PropertyRef Name="MaCTHD" />
+          </Key>
+          <Property Name="MaCTHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="MaHH" Type="int" Nullable="false" />
+          <Property Name="MaHD" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CT_PHIEUQUATANG">
+          <Key>
+            <PropertyRef Name="MaCTPhieu" />
+          </Key>
+          <Property Name="MaCTPhieu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="NgayNhan" Type="date" Nullable="false" />
+          <Property Name="NgayHetHan" Type="date" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" Nullable="false" />
+          <Property Name="GiamGia" Type="float" Nullable="false" />
+          <Property Name="DiemThuongDoi" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DIEMTHUONG">
+          <Key>
+            <PropertyRef Name="MaDT" />
+          </Key>
+          <Property Name="MaDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoDT" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HANG">
+          <Key>
+            <PropertyRef Name="MaHH" />
+          </Key>
+          <Property Name="MaHH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenHH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SoLuong" Type="int" Nullable="false" />
+          <Property Name="Gia" Type="float" Nullable="false" />
+          <Property Name="TrangThai" Type="bit" Nullable="false" />
+          <Property Name="MaLoai" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar(max)" />
+          <Property Name="Hinh" Type="nvarchar(max)" />
+          <Property Name="MaDT" Type="int" Nullable="false" />
+          <Property Name="MaSize" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayMua" Type="date" Nullable="false" />
+          <Property Name="MaUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOAI">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PHIEUQUATANG">
+          <Key>
+            <PropertyRef Name="MaPhieu" />
+          </Key>
+          <Property Name="MaPhieu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaUser" Type="int" Nullable="false" />
+          <Property Name="MaCTPhieu" Type="int" Nullable="false" />
+          <Property Name="SoLuongPhieu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="TenQuyen" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SIZE">
+          <Key>
+            <PropertyRef Name="MaSize" />
+          </Key>
+          <Property Name="MaSize" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="MaUser" />
+          </Key>
+          <Property Name="MaUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoTienTK" Type="float" Nullable="false" />
+          <Property Name="DiemThuong" Type="int" Nullable="false" />
+          <Property Name="TenUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TaiKhoan" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MaQuyen" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CT_HOADON__MaHD__3B75D760">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CT_HOADON">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CT_HOADON__MaHH__3A81B327">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="1" />
+          <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MaHH" />
+            </Principal>
+            <Dependent Role="CT_HOADON">
+              <PropertyRef Name="MaHH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaDT__38996AB5">
+          <End Role="DIEMTHUONG" Type="Self.DIEMTHUONG" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIEMTHUONG">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaLoai__37A5467C">
+          <End Role="LOAI" Type="Self.LOAI" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaSize__398D8EEE">
+          <End Role="SIZE" Type="Self.SIZE" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIZE">
+              <PropertyRef Name="MaSize" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MaUser__3C69FB99">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUQUAT__MaCTP__3F466844">
+          <End Role="CT_PHIEUQUATANG" Type="Self.CT_PHIEUQUATANG" Multiplicity="1" />
+          <End Role="PHIEUQUATANG" Type="Self.PHIEUQUATANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CT_PHIEUQUATANG">
+              <PropertyRef Name="MaCTPhieu" />
+            </Principal>
+            <Dependent Role="PHIEUQUATANG">
+              <PropertyRef Name="MaCTPhieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUQUAT__MaUse__3E52440B">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="PHIEUQUATANG" Type="Self.PHIEUQUATANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="PHIEUQUATANG">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__MaQuyen__3D5E1FD2">
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYEN">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="MaQuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanHangDBModelStoreContainer">
+          <EntitySet Name="CT_HOADON" EntityType="Self.CT_HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CT_PHIEUQUATANG" EntityType="Self.CT_PHIEUQUATANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DIEMTHUONG" EntityType="Self.DIEMTHUONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HANG" EntityType="Self.HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI" EntityType="Self.LOAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHIEUQUATANG" EntityType="Self.PHIEUQUATANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUYEN" EntityType="Self.QUYEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SIZE" EntityType="Self.SIZE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CT_HOADON__MaHD__3B75D760" Association="Self.FK__CT_HOADON__MaHD__3B75D760">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CT_HOADON__MaHH__3A81B327" Association="Self.FK__CT_HOADON__MaHH__3A81B327">
+            <End Role="HANG" EntitySet="HANG" />
+            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaDT__38996AB5" Association="Self.FK__HANG__MaDT__38996AB5">
+            <End Role="DIEMTHUONG" EntitySet="DIEMTHUONG" />
+            <End Role="HANG" EntitySet="HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaLoai__37A5467C" Association="Self.FK__HANG__MaLoai__37A5467C">
+            <End Role="LOAI" EntitySet="LOAI" />
+            <End Role="HANG" EntitySet="HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaSize__398D8EEE" Association="Self.FK__HANG__MaSize__398D8EEE">
+            <End Role="SIZE" EntitySet="SIZE" />
+            <End Role="HANG" EntitySet="HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MaUser__3C69FB99" Association="Self.FK__HOADON__MaUser__3C69FB99">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUQUAT__MaCTP__3F466844" Association="Self.FK__PHIEUQUAT__MaCTP__3F466844">
+            <End Role="CT_PHIEUQUATANG" EntitySet="CT_PHIEUQUATANG" />
+            <End Role="PHIEUQUATANG" EntitySet="PHIEUQUATANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUQUAT__MaUse__3E52440B" Association="Self.FK__PHIEUQUAT__MaUse__3E52440B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PHIEUQUATANG" EntitySet="PHIEUQUATANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__MaQuyen__3D5E1FD2" Association="Self.FK__USERS__MaQuyen__3D5E1FD2">
+            <End Role="QUYEN" EntitySet="QUYEN" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BanHangDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CT_HOADON">
+          <Key>
+            <PropertyRef Name="MaCTHD" />
+          </Key>
+          <Property Name="MaCTHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="MaHH" Type="Int32" Nullable="false" />
+          <Property Name="MaHD" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK__CT_HOADON__MaHD__3B75D760" FromRole="CT_HOADON" ToRole="HOADON" />
+          <NavigationProperty Name="HANG" Relationship="Self.FK__CT_HOADON__MaHH__3A81B327" FromRole="CT_HOADON" ToRole="HANG" />
+        </EntityType>
+        <EntityType Name="CT_PHIEUQUATANG">
+          <Key>
+            <PropertyRef Name="MaCTPhieu" />
+          </Key>
+          <Property Name="MaCTPhieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="NgayNhan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayHetHan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TrangThai" Type="Boolean" Nullable="false" />
+          <Property Name="GiamGia" Type="Double" Nullable="false" />
+          <Property Name="DiemThuongDoi" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PHIEUQUATANGs" Relationship="Self.FK__PHIEUQUAT__MaCTP__3F466844" FromRole="CT_PHIEUQUATANG" ToRole="PHIEUQUATANG" />
+        </EntityType>
+        <EntityType Name="DIEMTHUONG">
+          <Key>
+            <PropertyRef Name="MaDT" />
+          </Key>
+          <Property Name="MaDT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoDT" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HANGs" Relationship="Self.FK__HANG__MaDT__38996AB5" FromRole="DIEMTHUONG" ToRole="HANG" />
+        </EntityType>
+        <EntityType Name="HANG">
+          <Key>
+            <PropertyRef Name="MaHH" />
+          </Key>
+          <Property Name="MaHH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenHH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoLuong" Type="Int32" Nullable="false" />
+          <Property Name="Gia" Type="Double" Nullable="false" />
+          <Property Name="TrangThai" Type="Boolean" Nullable="false" />
+          <Property Name="MaLoai" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaDT" Type="Int32" Nullable="false" />
+          <Property Name="MaSize" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CT_HOADON" Relationship="Self.FK__CT_HOADON__MaHH__3A81B327" FromRole="HANG" ToRole="CT_HOADON" />
+          <NavigationProperty Name="DIEMTHUONG" Relationship="Self.FK__HANG__MaDT__38996AB5" FromRole="HANG" ToRole="DIEMTHUONG" />
+          <NavigationProperty Name="LOAI" Relationship="Self.FK__HANG__MaLoai__37A5467C" FromRole="HANG" ToRole="LOAI" />
+          <NavigationProperty Name="SIZE" Relationship="Self.FK__HANG__MaSize__398D8EEE" FromRole="HANG" ToRole="SIZE" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MaHD" />
+          </Key>
+          <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayMua" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MaUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CT_HOADON" Relationship="Self.FK__CT_HOADON__MaHD__3B75D760" FromRole="HOADON" ToRole="CT_HOADON" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__HOADON__MaUser__3C69FB99" FromRole="HOADON" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="LOAI">
+          <Key>
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaLoai" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HANGs" Relationship="Self.FK__HANG__MaLoai__37A5467C" FromRole="LOAI" ToRole="HANG" />
+        </EntityType>
+        <EntityType Name="PHIEUQUATANG">
+          <Key>
+            <PropertyRef Name="MaPhieu" />
+          </Key>
+          <Property Name="MaPhieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaUser" Type="Int32" Nullable="false" />
+          <Property Name="MaCTPhieu" Type="Int32" Nullable="false" />
+          <Property Name="SoLuongPhieu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CT_PHIEUQUATANG" Relationship="Self.FK__PHIEUQUAT__MaCTP__3F466844" FromRole="PHIEUQUATANG" ToRole="CT_PHIEUQUATANG" />
+          <NavigationProperty Name="USER" Relationship="Self.FK__PHIEUQUAT__MaUse__3E52440B" FromRole="PHIEUQUATANG" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="QUYEN">
+          <Key>
+            <PropertyRef Name="MaQuyen" />
+          </Key>
+          <Property Name="MaQuyen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenQuyen" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK__USERS__MaQuyen__3D5E1FD2" FromRole="QUYEN" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="SIZE">
+          <Key>
+            <PropertyRef Name="MaSize" />
+          </Key>
+          <Property Name="MaSize" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size1" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HANGs" Relationship="Self.FK__HANG__MaSize__398D8EEE" FromRole="SIZE" ToRole="HANG" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="MaUser" />
+          </Key>
+          <Property Name="MaUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoTienTK" Type="Double" Nullable="false" />
+          <Property Name="DiemThuong" Type="Int32" Nullable="false" />
+          <Property Name="TenUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TaiKhoan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaQuyen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MaUser__3C69FB99" FromRole="USERS" ToRole="HOADON" />
+          <NavigationProperty Name="PHIEUQUATANGs" Relationship="Self.FK__PHIEUQUAT__MaUse__3E52440B" FromRole="USERS" ToRole="PHIEUQUATANG" />
+          <NavigationProperty Name="QUYEN" Relationship="Self.FK__USERS__MaQuyen__3D5E1FD2" FromRole="USERS" ToRole="QUYEN" />
+        </EntityType>
+        <Association Name="FK__CT_HOADON__MaHD__3B75D760">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MaHD" />
+            </Principal>
+            <Dependent Role="CT_HOADON">
+              <PropertyRef Name="MaHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CT_HOADON__MaHH__3A81B327">
+          <End Role="HANG" Type="Self.HANG" Multiplicity="1" />
+          <End Role="CT_HOADON" Type="Self.CT_HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HANG">
+              <PropertyRef Name="MaHH" />
+            </Principal>
+            <Dependent Role="CT_HOADON">
+              <PropertyRef Name="MaHH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUQUAT__MaCTP__3F466844">
+          <End Role="CT_PHIEUQUATANG" Type="Self.CT_PHIEUQUATANG" Multiplicity="1" />
+          <End Role="PHIEUQUATANG" Type="Self.PHIEUQUATANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CT_PHIEUQUATANG">
+              <PropertyRef Name="MaCTPhieu" />
+            </Principal>
+            <Dependent Role="PHIEUQUATANG">
+              <PropertyRef Name="MaCTPhieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaDT__38996AB5">
+          <End Role="DIEMTHUONG" Type="Self.DIEMTHUONG" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DIEMTHUONG">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaLoai__37A5467C">
+          <End Role="LOAI" Type="Self.LOAI" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HANG__MaSize__398D8EEE">
+          <End Role="SIZE" Type="Self.SIZE" Multiplicity="1" />
+          <End Role="HANG" Type="Self.HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SIZE">
+              <PropertyRef Name="MaSize" />
+            </Principal>
+            <Dependent Role="HANG">
+              <PropertyRef Name="MaSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MaUser__3C69FB99">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHIEUQUAT__MaUse__3E52440B">
+          <End Role="USERS" Type="Self.USER" Multiplicity="1" />
+          <End Role="PHIEUQUATANG" Type="Self.PHIEUQUATANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="MaUser" />
+            </Principal>
+            <Dependent Role="PHIEUQUATANG">
+              <PropertyRef Name="MaUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USERS__MaQuyen__3D5E1FD2">
+          <End Role="QUYEN" Type="Self.QUYEN" Multiplicity="1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUYEN">
+              <PropertyRef Name="MaQuyen" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="MaQuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanHangDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CT_HOADON" EntityType="Self.CT_HOADON" />
+          <EntitySet Name="CT_PHIEUQUATANG" EntityType="Self.CT_PHIEUQUATANG" />
+          <EntitySet Name="DIEMTHUONGs" EntityType="Self.DIEMTHUONG" />
+          <EntitySet Name="HANGs" EntityType="Self.HANG" />
+          <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+          <EntitySet Name="LOAIs" EntityType="Self.LOAI" />
+          <EntitySet Name="PHIEUQUATANGs" EntityType="Self.PHIEUQUATANG" />
+          <EntitySet Name="QUYENs" EntityType="Self.QUYEN" />
+          <EntitySet Name="SIZEs" EntityType="Self.SIZE" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK__CT_HOADON__MaHD__3B75D760" Association="Self.FK__CT_HOADON__MaHD__3B75D760">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CT_HOADON__MaHH__3A81B327" Association="Self.FK__CT_HOADON__MaHH__3A81B327">
+            <End Role="HANG" EntitySet="HANGs" />
+            <End Role="CT_HOADON" EntitySet="CT_HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUQUAT__MaCTP__3F466844" Association="Self.FK__PHIEUQUAT__MaCTP__3F466844">
+            <End Role="CT_PHIEUQUATANG" EntitySet="CT_PHIEUQUATANG" />
+            <End Role="PHIEUQUATANG" EntitySet="PHIEUQUATANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaDT__38996AB5" Association="Self.FK__HANG__MaDT__38996AB5">
+            <End Role="DIEMTHUONG" EntitySet="DIEMTHUONGs" />
+            <End Role="HANG" EntitySet="HANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaLoai__37A5467C" Association="Self.FK__HANG__MaLoai__37A5467C">
+            <End Role="LOAI" EntitySet="LOAIs" />
+            <End Role="HANG" EntitySet="HANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HANG__MaSize__398D8EEE" Association="Self.FK__HANG__MaSize__398D8EEE">
+            <End Role="SIZE" EntitySet="SIZEs" />
+            <End Role="HANG" EntitySet="HANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MaUser__3C69FB99" Association="Self.FK__HOADON__MaUser__3C69FB99">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHIEUQUAT__MaUse__3E52440B" Association="Self.FK__PHIEUQUAT__MaUse__3E52440B">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PHIEUQUATANG" EntitySet="PHIEUQUATANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USERS__MaQuyen__3D5E1FD2" Association="Self.FK__USERS__MaQuyen__3D5E1FD2">
+            <End Role="QUYEN" EntitySet="QUYENs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BanHangDBModelStoreContainer" CdmEntityContainer="BanHangDBEntities">
+          <EntitySetMapping Name="CT_HOADON">
+            <EntityTypeMapping TypeName="BanHangDBModel.CT_HOADON">
+              <MappingFragment StoreEntitySet="CT_HOADON">
+                <ScalarProperty Name="MaCTHD" ColumnName="MaCTHD" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="MaHH" ColumnName="MaHH" />
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CT_PHIEUQUATANG">
+            <EntityTypeMapping TypeName="BanHangDBModel.CT_PHIEUQUATANG">
+              <MappingFragment StoreEntitySet="CT_PHIEUQUATANG">
+                <ScalarProperty Name="MaCTPhieu" ColumnName="MaCTPhieu" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="NgayNhan" ColumnName="NgayNhan" />
+                <ScalarProperty Name="NgayHetHan" ColumnName="NgayHetHan" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="GiamGia" ColumnName="GiamGia" />
+                <ScalarProperty Name="DiemThuongDoi" ColumnName="DiemThuongDoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DIEMTHUONGs">
+            <EntityTypeMapping TypeName="BanHangDBModel.DIEMTHUONG">
+              <MappingFragment StoreEntitySet="DIEMTHUONG">
+                <ScalarProperty Name="MaDT" ColumnName="MaDT" />
+                <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HANGs">
+            <EntityTypeMapping TypeName="BanHangDBModel.HANG">
+              <MappingFragment StoreEntitySet="HANG">
+                <ScalarProperty Name="MaHH" ColumnName="MaHH" />
+                <ScalarProperty Name="TenHH" ColumnName="TenHH" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="Gia" ColumnName="Gia" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+                <ScalarProperty Name="MaDT" ColumnName="MaDT" />
+                <ScalarProperty Name="MaSize" ColumnName="MaSize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="BanHangDBModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+                <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAIs">
+            <EntityTypeMapping TypeName="BanHangDBModel.LOAI">
+              <MappingFragment StoreEntitySet="LOAI">
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHIEUQUATANGs">
+            <EntityTypeMapping TypeName="BanHangDBModel.PHIEUQUATANG">
+              <MappingFragment StoreEntitySet="PHIEUQUATANG">
+                <ScalarProperty Name="MaPhieu" ColumnName="MaPhieu" />
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+                <ScalarProperty Name="MaCTPhieu" ColumnName="MaCTPhieu" />
+                <ScalarProperty Name="SoLuongPhieu" ColumnName="SoLuongPhieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUYENs">
+            <EntityTypeMapping TypeName="BanHangDBModel.QUYEN">
+              <MappingFragment StoreEntitySet="QUYEN">
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SIZEs">
+            <EntityTypeMapping TypeName="BanHangDBModel.SIZE">
+              <MappingFragment StoreEntitySet="SIZE">
+                <ScalarProperty Name="MaSize" ColumnName="MaSize" />
+                <ScalarProperty Name="Size1" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BanHangDBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="BanHangDBModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="MaUser" ColumnName="MaUser" />
+                <ScalarProperty Name="SoTienTK" ColumnName="SoTienTK" />
+                <ScalarProperty Name="DiemThuong" ColumnName="DiemThuong" />
+                <ScalarProperty Name="TenUser" ColumnName="TenUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="MaQuyen" ColumnName="MaQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,84 @@
+﻿@model OKA3_PQT1.Models.USER
+
+@{
+    ViewBag.Title = "Recharge";
+    Layout = "~/Views/Shared/_LayoutPageProfile.cshtml";
+}
+
+<h2>Recharge</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="card w-75">
+        <div class="card-body">
+            <h3 class="card-title">Card infomation</h3>
+            <select class="form-control">
+                <option>---Select carrier---</option>
+                <option>Viettel</option>
+                <option>Vinaphone</option>
+                <option>Mobifone</option>
+                <option>Vietnamobile</option>
+            </select>
+            <h4 style="margin-top:10px">Enter code: </h4> <input type="text" class="form-control" maxlength="15">
+            <h4 style="margin-top:10px">Enter price</h4>
+            @Html.EditorFor(model => model.Recharge, new { htmlAttributes = new { @class = "form-control" } })
+
+
+            @Html.HiddenFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.ConfirmPass, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPass, "", new { @class = "text-danger" })
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+            @Html.HiddenFor(model => model.MaUser, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.SoTienTK, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.DiemThuong, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.TenUser, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.MaQuyen, new { htmlAttributes = new { @class = "form-control" } })
+
+        <br /><br />
+            <input type="submit" value="Recharge" class="btn btn-primary" />
+            @Html.Raw(TempData["msgError"])
+        </div>
+    </div>
+}
+
+
+
+@*<div class="card w-75">
+        <div class="card-body">
+            <h3 class="card-title">Card infomation</h3>
+            <select class="form-control">
+                <option>---Select carrier---</option>
+                <option>Viettel</option>
+                <option>Vinaphone</option>
+                <option>Mobifone</option>
+                <option>Vietnamobile</option>
+            </select>
+            <h4 style="margin-top:10px">Enter code: </h4> <input type="text" class="form-control" maxlength="15">
+            @using (Html.BeginForm("Recharge", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <h4 style="margin-top:10px">Enter price</h4>
+                @Html.TextBoxFor(model => model.recharge, new { @type = "number", @min = "1", @max = "9999", @class = "form-control" });
+                <br />
+                <br />
+                @Html.EditorFor(model => model.MaUser)
+                @Html.EditorFor(model => model.SoTienTK)
+                @Html.EditorFor(model => model.TaiKhoan)
+                @Html.EditorFor(model => model.MatKhau)
+                @Html.EditorFor(model => model.Email)
+                @Html.EditorFor(model => model.MaQuyen)
+                @Html.EditorFor(model => model.DiemThuong)
+                @Html.EditorFor(model => model.TenUser)
+                <button class="btn btn-primary" type="submit">Recharge</button>
+            }
+        </div>
+    </div>*@

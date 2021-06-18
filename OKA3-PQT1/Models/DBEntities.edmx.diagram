@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbaa1ca10f52466d888f9d831f5c79f4" Name="Diagram1">
+        <EntityTypeShape EntityType="BanHangDBModel.CT_HOADON" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.CT_PHIEUQUATANG" Width="1.5" PointX="1.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.DIEMTHUONG" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.HANG" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.HOADON" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.LOAI" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.PHIEUQUATANG" Width="1.5" PointX="4" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.QUYEN" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.SIZE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanHangDBModel.USER" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="BanHangDBModel.FK__CT_HOADON__MaHD__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__CT_HOADON__MaHH__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__PHIEUQUAT__MaCTP__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__HANG__MaDT__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__HANG__MaLoai__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__HANG__MaSize__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__HOADON__MaUser__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__PHIEUQUAT__MaUse__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="BanHangDBModel.FK__USERS__MaQuyen__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

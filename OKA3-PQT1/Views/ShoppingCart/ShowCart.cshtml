@@ -1,0 +1,79 @@
+﻿@model OKA3_PQT1.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@if (Model != null)
+{
+    <a href="@Url.Action("Index","Product")">Continue Shopping</a>
+    <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-price cart-header cart-column">PRICE</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        <span class="cart-quantity cart-header cart-column">TOTAL</span>
+    </div>
+    <div class="cart-items">
+
+        @foreach (var item in Model.Items)
+        {
+            decimal total = item._quantity * (decimal)item._product.Gia;
+            <div class="cart-row">
+                <div class="cart-item cart-column">
+                    <img class="cart-item-image" src="@Url.Content(item._product.Hinh)" width="100" height="100">
+                    <span class="cart-item-title">@item._product.TenHH</span>
+                </div>
+                <span class="cart-price cart-column">$@item._product.Gia</span>
+                <div class="cart-quantity cart-column">
+                    @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                    {
+                        <input type="hidden" value="@item._product.MaHH" name="idPro" />
+                        <input type="number" value="@item._quantity" name="cartQuantity" class="inputSL" />
+                        <input type="submit" value="UPDATE" class="btn btn-p" />
+                    }
+                </div>
+                <div class="cart-quantity cart-column">
+                    <span class="cart-price">$@total</span>
+                    <a href="/ShoppingCart/RemoveCart/@item._product.MaHH" class="btn btn-danger" style="margin-left:30%">REMOVE</a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-price">$@Model.Total_money()</span>
+    </div>
+    if (Session["MaUser"] != null)
+    {
+        <a href="@Url.Action("Discount", "ShoppingCart", new { total = Model.Total_money(), mauser=Session["MaUser"] })" style="width:30%" class="btn btn-primary btn-purchase">PURCHASE</a>
+        @Html.Raw(TempData["msgError"])
+    }
+    else
+    {
+        <p style="text-align:center">You are not login, please login to purchase</p>
+        <a href="@Url.Action("Index", "LoginUser")" class="btn btn-primary btn-purchase" style="width:20%">LOGIN</a>
+    }
+
+}
+else
+{
+    @Html.Partial("EmptyCart")
+}
+
+<style>
+    .btn-p {
+        color: white;
+        background-color: forestgreen;
+        border: none;
+        border-radius: .3em;
+        font-weight: bold;
+    }
+
+        .btn-p:hover {
+            background-color: green;
+        }
+
+    .inputSL {
+        height: 30px;
+    }
+</style>

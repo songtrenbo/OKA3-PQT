@@ -1,0 +1,52 @@
+﻿@model OKA3_PQT1.Models.USER
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutPageProfile.cshtml";
+}
+
+<h1>About</h1>
+
+<h3>Full name: @Model.TenUser</h3>
+<hr />
+<h3>Email: @Model.Email</h3>
+<hr />
+<h3>Points: @Model.DiemThuong</h3>
+<hr />
+<h3>Money: @Model.SoTienTK$</h3>
+<a href="@Url.Action("Recharge","LoginUser",new { mauser=@Session["MaUser"]})" class="btn btn-primary">Recharge</a>
+<a href="@Url.Action("ViewPaymentHistory","ShoppingCart",new { mauser=@Session["MaUser"]})" class="btn btn-primary">View purchase history</a>
+<a href="@Url.Action("ViewCoupons","LoginUser",new { mauser=@Session["MaUser"]})" class="btn btn-primary">View Coupons</a>
+
+
+
+
+@*<div class="card w-75">
+        <div class="card-body">
+            <h3 class="card-title">Card infomation</h3>
+            <select class="form-control">
+                <option>---Select carrier---</option>
+                <option>Viettel</option>
+                <option>Vinaphone</option>
+                <option>Mobifone</option>
+                <option>Vietnamobile</option>
+            </select>
+            <h4 style="margin-top:10px">Enter code: </h4> <input type="text" class="form-control" maxlength="15">
+            @using (Html.BeginForm("Recharge", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <h4 style="margin-top:10px">Enter price</h4>
+                @Html.TextBoxFor(model => model.recharge, new { @type = "number", @min = "1", @max = "9999", @class = "form-control" });
+                <br />
+                <br />
+                @Html.EditorFor(model => model.MaUser)
+                @Html.EditorFor(model => model.SoTienTK)
+                @Html.EditorFor(model => model.TaiKhoan)
+                @Html.EditorFor(model => model.MatKhau)
+                @Html.EditorFor(model => model.Email)
+                @Html.EditorFor(model => model.MaQuyen)
+                @Html.EditorFor(model => model.DiemThuong)
+                @Html.EditorFor(model => model.TenUser)
+                <button class="btn btn-primary" type="submit">Recharge</button>
+            }
+        </div>
+    </div>*@

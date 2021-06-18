@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.HANG>
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div class="small-container">
+    <div class="row row-2">
+        <h2>All products</h2>
+    </div>
+    <div class="row">
+        @foreach (var hang in Model)
+        {
+            if (hang.TrangThai == false)
+            {
+                <div class="col-4">
+                    <img src="@Url.Content(hang.Hinh)">
+                    <h4 style="cursor:default">@hang.TenHH</h4>
+                    <p style="cursor:default">@hang.Gia$</p>
+                    <p style="color:white; background-color:red; border-radius:10px; text-align:center; padding:5px; width:50%; cursor:default">Out of stock</p>
+                </div>
+            }
+            else
+            {
+                <div class="col-4">
+                    <a href="@Url.Action("Detail","Product", new { MaHH=hang.MaHH})"><img src="@Url.Content(hang.Hinh)"></a>
+                    <h4>@hang.TenHH</h4>
+                    <p>@hang.Gia$</p>
+                </div>
+            }
+        }
+    </div>
+</div>

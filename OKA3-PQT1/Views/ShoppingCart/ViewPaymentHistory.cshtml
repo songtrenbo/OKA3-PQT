@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.HOADON>
+
+@{
+    ViewBag.Title = "ViewPaymentHistory";
+    Layout = "~/Views/Shared/_LayoutPageProfile.cshtml";
+}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+<div>
+    <a href="@Url.Action("Profile", "LoginUser", new {mauser=Session["MaUser"]})"><i class="bi bi-arrow-left"></i></a>
+</div>
+@{
+    int count = 0;
+    <table class="table">
+        @foreach (var item in Model)
+        {
+            int soluong = 0;
+            foreach (var i in ViewBag.CTHoaDon)
+            {
+                if (item.MaHD == i.MaHD)
+                {
+                    soluong += i.SoLuong;
+                    count++;
+                }
+            }
+            if (count > 0)
+            {
+
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" class="text-center">DATE BUY</th>
+                        <th scope="col" class="text-center">TOTAL QUANTITY</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle"><img src="~/Images/cart.png" width="100" height="100" class="cart-item-image" /></td>
+                        <td class="align-middle text-center"> <span class="cart-item-title">@item.NgayMua.Day/@item.NgayMua.Month/@item.NgayMua.Year</span></td>
+                        <td class="align-middle text-center"> <span class="cart-item-title">@soluong</span></td>
+                        <td class="align-middle text-center">
+                            <a href="@Url.Action("DetailHistory", "ShoppingCart", new {mahd=item.MaHD })" class="btn btn-success">DETAIL</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            }
+        }
+    </table>
+    if (count == 0)
+    {
+        <h2>You don't have payment history</h2>
+    }
+}
+
+

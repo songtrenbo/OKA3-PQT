@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/StyleSheetMain.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="@Url.Action("Index","Home")"><img src="~/Images/download.jpg" width="125px"></a>
+                </div>
+                <nav>
+                    <ul>
+                        @if (Session["MaUser"] == null)
+                        {
+                            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li><a href="@Url.Action("Index","Product")">Products</a></li>
+                            <li><a href="@Url.Action("About","Home")">About</a></li>
+                            <li><a href="@Url.Action("Contact","Home")">Contact</a></li>
+                            <li><a href="@Url.Action("Index","LoginUser")">Login</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                            <li><a href="@Url.Action("Index","Product")">Products</a></li>
+                            <li><a href="@Url.Action("Index","Discount")">Discount</a></li>
+                            <li><a href="@Url.Action("Profile","LoginUser",new { mauser= Session["MaUser"]})">@Session["TenUser"]</a></li>
+                            <li><a href="@Url.Action("LogOutUser","LoginUser")">Logout</a></li>
+
+                        }
+                    </ul>
+                </nav>               
+                <a href="@Url.Action("ShowCart","ShoppingCart")"><img src="~/Images/cart.png" width="30px" height="30px"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <h1>Lorem Ipsum<br>A new style</h1>
+                <p>Yesterday is history, tomorrow a mystery and today is a gift. That's why <br>we call it the present.</p>
+                <a href="" class="btn">Explore Now</a>
+            </div>
+            <div class="col-2">
+                <img src="~/Images/image1.png" />
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+    <!------ footer ----->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h1>Fashion</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+                <div class="footer-col-2">
+                    <h3>Useful links</h3>
+                    <ul>
+                        <li><a>Coupons</a></li>
+                        <li><a href="">Blog post</a></li>
+                        <li><a href="">Return Policies</a></li>
+                        <li><a href="">Join Affiliate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/">Facebook</a></li>
+                        <li><a href="https://twitter.com/?lang=en">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/">Instagram</a></li>
+                        <li><a href="https://www.youtube.com/">Youtube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">E-commerece | LTW-T6-1012</p>
+        </div>
+    </div>
+
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
+</body>
+</html>

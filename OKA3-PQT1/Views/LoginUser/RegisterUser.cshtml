@@ -1,0 +1,73 @@
+﻿@model OKA3_PQT1.Models.USER
+
+@{
+    ViewBag.Title = "RegisterUser";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+
+@using (Html.BeginForm("RegisterUser", "LoginUser", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section class="container-fluid bg">
+        <section class="row justify-content-center">
+            <section class="col-12 col-sm-8 col-md-4 form-container">
+                <form class="form-container">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TaiKhoan)
+                        @Html.TextBoxFor(model => model.TaiKhoan, new { @class = "form-control", style = "field-validation-error", @placeholder = "Enter account" })
+                        @Html.ValidationMessageFor(model => model.TaiKhoan)
+                        @if (ViewBag.ErrorRegister != null)
+                        {
+                            <p>@ViewBag.ErrorRegister</p>
+                        }
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.MatKhau)
+                        @Html.TextBoxFor(model => model.MatKhau, new { @class = "form-control", style = "field-validation-error", @placeholder = "Enter password", @type = "password" })
+                        @Html.ValidationMessageFor(model => model.MatKhau)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ConfirmPass)
+                        @Html.TextBoxFor(model => model.ConfirmPass, new { @class = "form-control", style = "field-validation-error", @placeholder = "Enter password again", @type = "password" })
+                        @Html.ValidationMessageFor(model => model.ConfirmPass)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TenUser)
+                        @Html.TextBoxFor(model => model.TenUser, new { @class = "form-control", style = "field-validation-error", @placeholder = "Enter your name" })
+                        @Html.ValidationMessageFor(model => model.TenUser)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", style = "field-validation-error", @placeholder = "Enter your mail", @type = "mail" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <button type="submit" value="Create" class="btn btn-danger btn-block" style="padding: 10px;"><b>Đăng ký</b></button>                   
+                    <br>
+                </form>
+            </section>
+        </section>
+    </section>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<style>
+
+    .form-container {
+        background: #fff;
+        margin-top: 5%;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0px #000;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+</style>

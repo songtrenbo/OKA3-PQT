@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section class="contact">
+    <div class="content">
+        <h2>Contact Us</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+    </div>
+    <div class="container-1">
+        <div class="contactInfo">
+            <div class="box">
+                <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Address</h3>
+                    <p>123 Generic Road,<br>District name, City name</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Email</h3>
+                    <p><a href="">myemail@email.com</a></p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                <div class="text">
+                    <h3>Phone</h3>
+                    <p>090 123 321</p>
+                </div>
+            </div>
+        </div>
+        <div class="contactForm">
+            <h2>Send Message</h2>
+            <div class="inputBox">
+                <input type="text" required='required'>
+                <span>Full Name</span>
+            </div>
+            <div class="inputBox">
+                <input type="text" required='required'>
+                <span>Email</span>
+            </div>
+            <div class="inputBox">
+                <textarea required='required'></textarea>
+                <span>Your Message</span>
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Send" class="sendBtn">
+            </div>
+        </div>
+    </div>
+</section>

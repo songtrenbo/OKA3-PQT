@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SuccessPayment</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+</head>
+<body>
+    <div class="text-center" style="margin-top:100px">
+        <h1>Payment success!</h1>
+        <a href="@Url.Action("Index", "Product")">Continue shopping</a>
+    </div>
+
+
+    <style>
+@@keyframes my {
+0% { color: darkred; }
+50% { color: green; }
+100% { color: darkblue; }
+}
+        h1 {
+            font-size: 5em;
+            -webkit-animation: my 1000ms infinite;
+            -moz-animation: my 1000ms infinite;
+            -o-animation: my 1000ms infinite;
+            animation: my 1000ms infinite;
+        }
+
+        a {
+            text-decoration: none;
+            color: forestgreen;
+            font-size: 4em;
+        }
+
+            a:hover {
+                color: greenyellow;
+                text-decoration: none
+            }
+    </style>
+</body>
+</html>

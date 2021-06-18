@@ -1,0 +1,29 @@
+﻿@model OKA3_PQT1.Models.HANG
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@using (Html.BeginForm())
+{
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="@Url.Content(Model.Hinh)" width="100%" id="big">
+            </div>
+            <div class="col-2">
+                <h1>@Model.TenHH</h1>
+                <h4>Price: @Model.Gia$</h4>
+                @Html.DropDownListFor(model => model.MaSize, ViewBag.Sizes as SelectList, new { @class = "form-control", @style = "width:100px" })
+                <br />
+                @*@Html.EditorFor(model => model.SoLuongMua, new { htmlAttributes = new { @min = "1", @max = @Model.SoLuong, @style = "width:100px" } })*@
+                <h3>Details</h3>
+                <p>
+                    @Model.MoTa
+                </p>
+            </div>
+            <a href="@Url.Action("AddToCard", "ShoppingCart", new { id = Model.MaHH, soluong = Model.SoLuongMua })" class="btn">Add To Cart</a>
+            @Html.Raw(TempData["msgError"])
+        </div>
+    </div>
+}

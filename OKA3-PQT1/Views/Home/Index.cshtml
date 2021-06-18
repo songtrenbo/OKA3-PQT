@@ -1,0 +1,139 @@
+﻿@model IEnumerable<OKA3_PQT1.Models.HANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPageMain.cshtml";
+}
+<!-------featured catogories ------->
+<div class="catogories">
+    <div class="small-container">
+        <div class="row">
+            @{
+                int count1 = 0;
+                foreach (var hang in Model)
+                {
+                    if (count1 < 3)
+                    {
+                        <div class="col-3">
+                            <img src="@Url.Content(hang.Hinh)" />
+                        </div>
+                        count1++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<!-------featured products ------->
+<div class="small-container">
+    <h2 class="title">Fetured Products</h2>
+    <div class="row">
+        @{
+            int count2 = 0;
+            foreach (var hang in Model)
+            {
+                if (count2 < 4)
+                {
+                    <div class="col-4">
+                        <a href="@Url.Action("Detail","Product", new { MaHH=hang.MaHH})"><img src="@Url.Content(hang.Hinh)"></a>
+                        <h4>@hang.TenHH</h4>
+                        <p>@hang.Gia $</p>
+                    </div>
+                    count2++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    </div>
+</div>
+
+<!-------Latest products ------->
+<div class="small-container">
+    <h2 class="title">Latest Products</h2>
+    <div class="row">
+        @{
+            int count3 = 0;
+            foreach (var hang in Model)
+            {
+                if (count3 >= 4 && count3 <= 7 )
+                {
+                    <div class="col-4">
+                        <a href="@Url.Action("Detail","Product", new { MaHH=hang.MaHH})"><img src="@Url.Content(hang.Hinh)"></a>
+                        <h4>@hang.TenHH</h4>
+                        <p>@hang.Gia $</p>
+                    </div>
+                }
+                count3++;
+            }
+        }
+    </div>
+</div>
+
+<!------- Offer ------->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2"><img src="https://images-na.ssl-images-amazon.com/images/I/61h9%2BTsv4%2BL._SR400,400_.jpg" alt="Smart Brand 3.2" class="offer-img"></div>
+            <div class="col-2">
+                <p>Exclusively Available on Fashion</p>
+                <h1>Smart Brand 3.2</h1>
+                <small>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</small>
+                <a href="" class="btn">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----- testimonial ---->
+<div class="testimonial">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                <img src="~/Images/user-1.png" alt="Jonh Smith">
+                <h3>John Smith</h3>
+            </div>
+            <div class="col-3">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                <img src="~/Images/user-2.png" alt="Jonh Smith">
+                <h3>John Smith</h3>
+            </div>
+            <div class="col-3">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                <img src="~/Images/user-3.png" alt="Jonh Smith">
+                <h3>John Smith</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!------------Brands---------->
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-5">
+                <img src="~/Images/logo-godrej.png" alt="Gorej">
+            </div>
+            <div class="col-5">
+                <img src="~/Images/logo-coca-cola.png" alt="Cola">
+            </div>
+            <div class="col-5">
+                <img src="~/Images/logo-oppo.png" alt="Oppo">
+            </div>
+            <div class="col-5">
+                <img src="~/Images/logo-paypal.png" alt="Paypal">
+            </div>
+            <div class="col-5">
+                <img src="~/Images/logo-philips.png" alt="Philis">
+            </div>
+        </div>
+    </div>
+</div>
